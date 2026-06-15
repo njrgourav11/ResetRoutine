@@ -80,7 +80,7 @@ Keep your answers engaging, well-formatted (use bullet points and markdown), and
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: 'meta/llama-3.1-70b-instruct',
+        model: 'meta/llama-3.1-8b-instruct',
         messages: requestMessages,
         temperature: 0.5,
         max_tokens: 1024,

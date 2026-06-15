@@ -67,7 +67,7 @@ export default function LandingPage() {
 
         {/* NVIDIA AI Coach Feature Spotlight */}
         <section className="page-container" id="ai-spotlight-section" style={{ maxWidth: '1000px', paddingBottom: '60px' }}>
-          <div className="glass-card" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px', alignItems: 'center', background: 'rgba(79,142,247,0.02)', border: '1px solid rgba(79,142,247,0.15)' }}>
+          <div className="glass-card spotlight-card" style={{ background: 'rgba(79,142,247,0.02)', border: '1px solid rgba(79,142,247,0.15)' }}>
             <div>
               <span className="stat-icon-wrapper" style={{ color: 'var(--blue)', background: 'var(--blue-dim)', marginBottom: '16px', width: '48px', height: '48px' }}>
                 <Bot size={26} />
@@ -109,7 +109,7 @@ export default function LandingPage() {
           
           <div className="two-col">
             {/* Trial Plan */}
-            <div className="glass-card" style={{ display: 'flex', flexDirection: 'column', gap: '16px', padding: '32px' }}>
+            <div className="glass-card pricing-card">
               <h3 style={{ fontSize: '20px', fontWeight: '700', fontFamily: 'Outfit' }}>30-Day Free Trial</h3>
               <div>
                 <span style={{ fontSize: '36px', fontWeight: '800', fontFamily: 'Outfit' }}>$0</span>
@@ -145,7 +145,7 @@ export default function LandingPage() {
             </div>
 
             {/* Premium Plan */}
-            <div className="glass-card" style={{ display: 'flex', flexDirection: 'column', gap: '16px', padding: '32px', border: '1px solid var(--blue)', background: 'rgba(79,142,247,0.01)' }}>
+            <div className="glass-card pricing-card pricing-premium">
               <h3 style={{ fontSize: '20px', fontWeight: '700', fontFamily: 'Outfit', color: 'var(--blue)' }}>Premium Pro</h3>
               <div>
                 <span style={{ fontSize: '36px', fontWeight: '800', fontFamily: 'Outfit', color: 'var(--blue)' }}>$9.99</span>
