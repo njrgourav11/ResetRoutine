@@ -21,8 +21,8 @@ import {
 export default function DashboardPage() {
   const { user, profile } = useAuth();
   const { currentStreak, checkins } = useWorkouts();
-  const { quitDate: smokeQuitDate, moneySaved: smokeMoneySaved } = useSmoke();
-  const { quitDate: alcoholQuitDate, moneySaved: alcoholMoneySaved } = useAlcohol();
+  const { quitDate: smokeQuitDate, streakStartDate: smokeStreakStartDate, moneySaved: smokeMoneySaved } = useSmoke();
+  const { quitDate: alcoholQuitDate, streakStartDate: alcoholStreakStartDate, moneySaved: alcoholMoneySaved } = useAlcohol();
 
   const [smokeDaysFree, setSmokeDaysFree] = useState(0);
   const [alcoholDaysFree, setAlcoholDaysFree] = useState(0);
@@ -30,23 +30,23 @@ export default function DashboardPage() {
 
   useEffect(() => {
     Promise.resolve().then(() => {
-      if (smokeQuitDate) {
-        setSmokeDaysFree(Math.floor((Date.now() - smokeQuitDate.getTime()) / (1000 * 60 * 60 * 24)));
+      if (smokeStreakStartDate) {
+        setSmokeDaysFree(Math.floor((Date.now() - smokeStreakStartDate.getTime()) / (1000 * 60 * 60 * 24)));
       } else {
         setSmokeDaysFree(0);
       }
     });
-  }, [smokeQuitDate]);
+  }, [smokeStreakStartDate]);
 
   useEffect(() => {
     Promise.resolve().then(() => {
-      if (alcoholQuitDate) {
-        setAlcoholDaysFree(Math.floor((Date.now() - alcoholQuitDate.getTime()) / (1000 * 60 * 60 * 24)));
+      if (alcoholStreakStartDate) {
+        setAlcoholDaysFree(Math.floor((Date.now() - alcoholStreakStartDate.getTime()) / (1000 * 60 * 60 * 24)));
       } else {
         setAlcoholDaysFree(0);
       }
     });
-  }, [alcoholQuitDate]);
+  }, [alcoholStreakStartDate]);
 
   useEffect(() => {
     Promise.resolve().then(() => {

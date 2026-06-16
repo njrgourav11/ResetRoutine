@@ -28,6 +28,7 @@ export function AlcoholCravingLog({ cravings, onSaved }: AlcoholCravingLogProps)
     setSaving(true);
     try {
       await logAlcoholCraving(user.uid, { intensity, trigger, resisted });
+
       onSaved();
       setShow(false);
 

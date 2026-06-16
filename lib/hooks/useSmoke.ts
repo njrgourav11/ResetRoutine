@@ -8,6 +8,7 @@ import { Timestamp } from 'firebase/firestore';
 export function useSmoke() {
   const { user } = useAuth();
   const [quitDate, setQuitDate] = useState<Date | null>(null);
+  const [streakStartDate, setStreakStartDate] = useState<Date | null>(null);
   const [settings, setSettings] = useState<SmokeSettings | null>(null);
   const [cravings, setCravings] = useState<Craving[]>([]);
   const [moneySaved, setMoneySaved] = useState(0);
@@ -39,6 +40,10 @@ export function useSmoke() {
       setSettings(smokeSettings);
       setCravings(cravingData);
       
+      const lastLapse = cravingData.find((c) => !c.resisted);
+      const streakStart = lastLapse ? lastLapse.timestamp.toDate() : qd;
+      setStreakStartDate(streakStart);
+      
       if (qd && smokeSettings) {
         setMoneySaved(calculateMoneySaved(qd, smokeSettings));
       } else {
@@ -67,6 +72,11 @@ export function useSmoke() {
         }
         setSettings(smokeSettings);
         setCravings(cravingData);
+
+        const lastLapse = cravingData.find((c) => !c.resisted);
+        const streakStart = lastLapse ? lastLapse.timestamp.toDate() : qd;
+        setStreakStartDate(streakStart);
+
         if (qd && smokeSettings) {
           setMoneySaved(calculateMoneySaved(qd, smokeSettings));
         } else {
@@ -82,5 +92,5 @@ export function useSmoke() {
     return () => { active = false; };
   }, [user]);
 
-  return { quitDate, settings, cravings, moneySaved, loading, refresh };
+  return { quitDate, streakStartDate, settings, cravings, moneySaved, loading, refresh };
 }

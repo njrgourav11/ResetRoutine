@@ -19,7 +19,7 @@ const SMOKE_TIPS = [
 
 export default function SmokePage() {
   const { user, profile } = useAuth();
-  const { quitDate, settings, cravings, moneySaved, refresh } = useSmoke();
+  const { quitDate, streakStartDate, settings, cravings, moneySaved, refresh } = useSmoke();
   const [showSettings, setShowSettings] = useState(false);
   const [cigsPerDay, setCigsPerDay] = useState(20);
   const [costPerCigarette, setCostPerCigarette] = useState(0.60);
@@ -88,9 +88,9 @@ export default function SmokePage() {
         </p>
       </div>
 
-      {quitDate && (
+      {streakStartDate && (
         <div className="glass-card smoke-hero">
-          <SmokeCounter quitDate={quitDate} />
+          <SmokeCounter quitDate={streakStartDate} />
         </div>
       )}
 
@@ -102,7 +102,7 @@ export default function SmokePage() {
 
       <div className="two-col">
         <div className="glass-card">
-          {quitDate && <MilestonesPanel quitDate={quitDate} />}
+          {streakStartDate && <MilestonesPanel quitDate={streakStartDate} />}
         </div>
         <div className="glass-card">
           <CravingLog cravings={cravings} onSaved={refresh} />

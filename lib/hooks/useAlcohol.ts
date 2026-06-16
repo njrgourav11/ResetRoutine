@@ -8,6 +8,7 @@ import { Timestamp } from 'firebase/firestore';
 export function useAlcohol() {
   const { user } = useAuth();
   const [quitDate, setQuitDate] = useState<Date | null>(null);
+  const [streakStartDate, setStreakStartDate] = useState<Date | null>(null);
   const [settings, setSettings] = useState<AlcoholSettings | null>(null);
   const [cravings, setCravings] = useState<AlcoholCraving[]>([]);
   const [moneySaved, setMoneySaved] = useState(0);
@@ -36,6 +37,10 @@ export function useAlcohol() {
       }
       setSettings(alcoholSettings);
       setCravings(cravingData);
+
+      const lastLapse = cravingData.find((c) => !c.resisted);
+      const streakStart = lastLapse ? lastLapse.timestamp.toDate() : qd;
+      setStreakStartDate(streakStart);
 
       if (qd && alcoholSettings) {
         const stats = calculateStats(qd, alcoholSettings);
@@ -69,6 +74,10 @@ export function useAlcohol() {
         setSettings(alcoholSettings);
         setCravings(cravingData);
 
+        const lastLapse = cravingData.find((c) => !c.resisted);
+        const streakStart = lastLapse ? lastLapse.timestamp.toDate() : qd;
+        setStreakStartDate(streakStart);
+
         if (qd && alcoholSettings) {
           const stats = calculateStats(qd, alcoholSettings);
           setMoneySaved(stats.moneySaved);
@@ -89,6 +98,7 @@ export function useAlcohol() {
 
   return {
     quitDate,
+    streakStartDate,
     settings,
     cravings,
     moneySaved,

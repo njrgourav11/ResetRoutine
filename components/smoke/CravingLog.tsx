@@ -28,6 +28,7 @@ export function CravingLog({ cravings, onSaved }: CravingLogProps) {
     setSaving(true);
     try {
       await logCraving(user.uid, { intensity, trigger, resisted });
+
       onSaved();
       setShow(false);
 

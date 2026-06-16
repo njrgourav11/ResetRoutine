@@ -368,7 +368,7 @@ input, textarea, select { font-family: inherit; }
   background: rgba(0,0,0,0.7);
   backdrop-filter: blur(4px);
   display: flex; align-items: center; justify-content: center;
-  z-index: 500;
+  z-index: 1000;
   animation: fadeIn 0.15s ease;
 }
 .modal-card {
@@ -378,7 +378,7 @@ input, textarea, select { font-family: inherit; }
   width: 100%;
   max-width: 480px;
   margin: 16px;
-  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
   display: flex;
   flex-direction: column;
   animation: slideUp 0.2s cubic-bezier(0.4,0,0.2,1);
@@ -804,6 +804,10 @@ input, textarea, select { font-family: inherit; }
   from { opacity: 0; transform: translateY(24px) scale(0.97); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
+@keyframes slideUpMobile {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
 
 /* ─── Responsive ─────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
@@ -891,6 +895,16 @@ input, textarea, select { font-family: inherit; }
   }
   .counter-digits {
     gap: 4px;
+  }
+  .modal-overlay {
+    align-items: flex-end;
+  }
+  .modal-card {
+    margin: 0;
+    max-height: calc(100dvh - 16px);
+    border-radius: var(--radius) var(--radius) 0 0;
+    animation: slideUpMobile 0.25s cubic-bezier(0.4,0,0.2,1);
+    padding-bottom: env(safe-area-inset-bottom);
   }
   .modal-footer {
     flex-direction: column-reverse;

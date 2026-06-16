@@ -20,7 +20,7 @@ const ALCOHOL_TIPS = [
 
 export default function AlcoholPage() {
   const { user, profile, updateProfileData } = useAuth();
-  const { quitDate, settings, cravings, moneySaved, drinksSaved, refresh } = useAlcohol();
+  const { quitDate, streakStartDate, settings, cravings, moneySaved, drinksSaved, refresh } = useAlcohol();
   const [showSettings, setShowSettings] = useState(false);
   const [drinksPerWeek, setDrinksPerWeek] = useState(10);
   const [costPerDrink, setCostPerDrink] = useState(7);
@@ -97,7 +97,7 @@ export default function AlcoholPage() {
 
       {quitDate ? (
         <div className="glass-card smoke-hero" style={{ borderLeft: '3px solid var(--orange)' }}>
-          <AlcoholCounter quitDate={quitDate} />
+          {streakStartDate && <AlcoholCounter quitDate={streakStartDate} />}
         </div>
       ) : (
         <div className="glass-card empty-state">
@@ -118,7 +118,7 @@ export default function AlcoholPage() {
 
           <div className="two-col">
             <div className="glass-card">
-              <AlcoholMilestonesPanel quitDate={quitDate} />
+              {streakStartDate && <AlcoholMilestonesPanel quitDate={streakStartDate} />}
             </div>
             <div className="glass-card">
               <AlcoholCravingLog cravings={cravings} onSaved={refresh} />
